@@ -36,17 +36,18 @@
             height: 100%;
             position: absolute;
         }
-        
         .page1{
             opacity: 0; 
             background: url("http://p5.qhimg.com/t01e01124008d17b7d6.png") no-repeat;
             background-size: 100% 100%;
-            -webkit-animation: screenOne ease 3s;
+            -webkit-animation: fadeOut ease 3s;
+        }
+        @keyframes fadeIn{
+            0%{ opacity: 0; }
+            100%{ opacity: 1; }
         }
         .page2{
-            background: url("http://p5.qhimg.com/t01e01124008d17b7d6.png") no-repeat;
-            background-size: 100% 100%;
-            -webkit-animation: screenTwo 1s ease 3s;
+            -webkit-animation: fadeIn 2s ease 2s both;
         }
         .kids{
             width: 8rem;
@@ -59,40 +60,122 @@
             left: 50%;
             bottom: 2rem;
             margin-left: -4rem;
-            animation: first ease 2s; 
+            -webkit-animation: runningGirl ease 2s; 
+        }
+        .page2 .kids{
+            position: absolute;
+            bottom: 9rem;
+            left: 30%;
+            animation: shakeGirl .2s ease-in .3s infinite alternate;
+        }
+        .page2 .backward{
+            display: block;
+            width: 1rem;
+            height: 2rem;
+            background: url(http://p9.qhimg.com/t01b237f40946c339df.png) no-repeat;
+            background-size: 100% 100%;
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            margin-left: -.5rem;
         }
         .anim{
             -webkit-transition: all 500ms ease-out 0s;
             transition: all 500ms ease-out 0s; 
         }
-        @keyframes screenOne{
+        @keyframes fadeOut{
             0%{ opacity: 1; }
             50%{ opacity: 1; }
             100%{ opacity: 0; }
         }
-        @keyframes screenTwo{
-            0%{ display: none; }
-            100%{ display: block; }
-        }
-        @keyframes first{
+        @keyframes runningGirl{
             from {left: 0;}
             to {left: 50%;}
         }
-        
+        @keyframes shakeGirl{
+            from {bottom: 9rem;}
+            to {bottom: 8.6rem;}
+        }
+        .page3{
+            display: none;
+            background: green;
+        }
+        .page2 img{
+            width: 100%;
+        }
+        .follow{
+            width: 3rem;
+            height: 2rem;
+        }
     </style>
 </head>
 <body>
     <div id="wrapper">
-        <div class="page page1"><div class="kids"></div></div>
-        <div class="page page2"></div>
-        <div class="page page3"></div>
+        <!--<div class="page page1"><div class="kids"></div></div>
+        <div class="page page2">
+            <img class="intro-img" src="http://p0.qhimg.com/t0127620ecbb018d5c9.png">
+            <div class="kids"></div>
+            <span class="backward"></span>
+            <img src="http://p2.qhimg.com/t01b5db5a0733c7c13b.png">
+        </div>-->
+        <button class="follow js-follow">+  关注</button>
     </div>
 
     <script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
-    <!--<script src="./fullpage.js"></script>-->
 
     <script>
+        function flipOver(){
+            var $page2 = $('#wrapper .page2');
+            var startX, startY, changeX, changeY;
+            var y = $('#wrapper').height();
+            $page2.on('touchstart', function(e){
+                startY = e.targetTouches[0].pageY;
+            });
+
+            $page2.on('touchend', function(e){
+                changeY = e.changedTouches[0].pageY;
+                if(changeY - startY < 0){//下翻
+                    $page2.css({
+                        '-webkit-transform' : 'translate3d(0px, -' + y + 'px, 0px);',
+                        'transform' : 'translate3d(0px, -' + y + 'px, 0px);'
+                    }).addClass('anim');
+                }
+            });
+        }
         
+
+        function ajax(req){
+            $.ajax({
+                url: req.url,
+                data: req.data,
+                dataType: 'jsonp',
+                callback: req.cbk,
+                method: 'POST',
+                success: req.success,
+                fail: req.fail
+            })
+        }
+        
+        function init(){
+            flipOver();
+            alert(1)
+            $('.js-follow').on('tap', function(){
+                
+                ajax({
+                    url: 'http://record.btime.com/sub',
+                    data: { 'c_id':  471863},
+                    callback: 'follow',
+                    success: function(res){
+                        console.log(res)
+                    },
+                    fail: function(err){
+                        console.log(err)
+                    }
+                });
+            })
+        }
+
+        init()
     </script>
 </body>
 </html>
