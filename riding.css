@@ -1,0 +1,192 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.page1 {
+    opacity: 0;
+    background: url("http://p5.qhimg.com/t01e01124008d17b7d6.png") no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation: fadeOut ease 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.page2 {
+    -webkit-animation: fadeIn 2s ease 2s both;
+}
+
+.kids {
+    width: 8rem;
+    height: 6rem;
+    background: url("http://p4.qhimg.com/t01b9e1e072c0394df7.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.page1 .kids {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    margin-left: -4rem;
+    -webkit-animation: runningGirl ease 2s;
+}
+
+.page2 .kids {
+    position: absolute;
+    bottom: 9rem;
+    left: 30%;
+    animation: shakeGirl .2s ease-in .3s infinite alternate;
+}
+
+.page2 .backward {
+    display: block;
+    width: 1rem;
+    height: 2rem;
+    background: url(http://p9.qhimg.com/t01b237f40946c339df.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    margin-left: -.5rem;
+}
+
+.anim {
+    -webkit-transition: all 500ms ease-out 0s;
+    transition: all 500ms ease-out 0s;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes runningGirl {
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+@keyframes shakeGirl {
+    from {
+        bottom: 9rem;
+    }
+    to {
+        bottom: 8.6rem;
+    }
+}
+
+.page3 .bg-img,
+.page2 img {
+    width: 100%;
+}
+
+.follow {
+    width: 3rem;
+    height: 2rem;
+}
+
+.page3 {
+    width: 100%;
+}
+
+.page3 .city-popup {
+    width: 100%;
+    position: absolute;
+    top: 25.885rem;
+}
+
+.page3 .city-icon {
+    /*position: absolute;*/
+    height: 2rem;
+}
+.page3 .city{
+    position: absolute;
+}
+.zjk{
+    left: 4.083rem;
+}
+.popup{
+    position: absolute;
+}
+.zjk-pop{
+    left: -2.07rem;
+    width: 9.6rem;
+    top: -7.83rem;
+}
+.zy{
+    left: 9.216rem;
+}
+.ts{
+    left: 1.968rem;
+    top: 4.8rem;
+}
+.yc{
+    left: 6.8rem;
+    top: 5rem;
+}
+.kkth{
+    left: 11.6rem;
+    top: 4.85rem;
+}
+.wlmq{
+    left: 3.5rem;
+    top: 10rem;
+}
+.kksl{
+    left: 9.6rem;
+    top: 10rem;
+}
+.kns{
+    left: 1.6rem;
+    top: 13.8rem;
+}
+.klmy{
+    left: 6rem;
+    top: 14rem;
+}
+.sw{
+    left: 12.6rem;
+    top: 14.2rem;
+}
+.tklmg{
+    left: 3.2rem;
+    top: 19.5rem;
+}
+.xzx{
+    left: 9rem;
+    top: 19.6rem;
+}
+.page3 .pop {
+    width: 16rem;
+}
