@@ -35,7 +35,7 @@
         <div class="page page3">
             <img class="bg-img" src="./img/bg3.png">
             <div class="city-popup"></div>
-            <div class="other-city"></div>
+            <div class="other-city"><span class="vote-result">+1</span></div>
             <button class="btn follow-btn js-follow"></button>
         </div>
     </div>
@@ -43,7 +43,6 @@
     <script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
 
     <script>
-        
         function flipOver(){
             var $page2 = $('#wrapper .page2');
             var startX, startY, changeX, changeY;
@@ -82,7 +81,7 @@
             var cityVote = [];
             var isPoll = [];
             $.ajax({
-                url: ' http://votet.btime.com/v2/poll/results',
+                url: 'http://votet.btime.com/v2/poll/results',
                 data: { 'subjId':  2345, 'depMd5': '889675bcbdc82c50260173446d19d4bd'},
                 dataType: 'jsonp',
                 method: 'POST',
@@ -132,7 +131,7 @@
                 });
             });
 
-            $('.js-vote-city').on('click', function(){
+            $('.other-city').on('click', '.js-vote-city', function(){
                 var $this = $(this);
                 var cityName = /\w+\b/.exec($(this).attr('class'))[0];
                 var voteCityIds = {
@@ -141,7 +140,19 @@
                     'qd': 6073, 'sh': 6074, 'xm': 6075 
                 };
                 $.ajax({
-                    url: ''
+                    url: 'http://votet.btime.com/v1/poll/voting',
+                    data: { 'subjId': 2345,  'itemId': 1149, 'id': voteCityIds[cityName],'depMd5': '889675bcbdc82c50260173446d19d4bd'},
+                    dataType: 'jsonp',
+                    method: 'POST',
+                    callback: 'vote',
+                    success: function(res){
+                        if(res.errno == 1){
+
+                        }
+                    },
+                    fail: function(err){
+                        console.log(888,err)
+                    }
                 });
                 
             });

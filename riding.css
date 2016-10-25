@@ -40,8 +40,8 @@
 }
 
 .kids {
-    width: 8rem;
-    height: 6rem;
+    width: 5.952rem;
+    height: 4.16rem;
     background: url("http://p4.qhimg.com/t01b9e1e072c0394df7.png") no-repeat;
     background-size: 100% 100%;
 }
@@ -56,9 +56,9 @@
 
 .page2 .kids {
     position: absolute;
-    bottom: 9rem;
+    bottom: 6.08rem;
     left: 30%;
-    animation: shakeGirl .2s ease-in .3s infinite alternate;
+    animation: shakingGirl .2s ease-in .2s infinite alternate;
 }
 
 .page2 .backward {
@@ -99,12 +99,12 @@
     }
 }
 
-@keyframes shakeGirl {
+@keyframes shakingGirl {
     from {
-        bottom: 9rem;
+        bottom: 6.08rem;
     }
     to {
-        bottom: 8.6rem;
+        bottom: 5.78rem;
     }
 }
 
@@ -243,6 +243,11 @@
     top: 53.419rem;
     width: 100%;
 }
+.other-city .tips{
+    position: absolute;
+    left: 46%;
+
+}
 .js-vote-city{
     position: absolute;
 }
@@ -314,7 +319,7 @@
 .other-city  .xm{
     width: 2.88rem;
     height: 2.88rem;
-    background: url('./img/sh.png') no-repeat;
+    background: url('./img/xm.png') no-repeat;
     background-size: 100% 100%;
     top: 10.325rem;
     left: 2.283rem;
@@ -326,6 +331,51 @@
     background-size: 100% 100%;
     top: 9.6rem;
     left: 9.257rem;
+}
+@keyframes vote {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+    to {
+        top: -.5rem;
+        opacity: 0;
+    }
+}
+.vote-result{
+    font-weight: bold;
+    font-size: 0.704rem;
+    position: absolute;
+    left: 48%;
+    animation: vote 1s linear  both;
+}
+
+.km .vote-result{
+    color: #ff4e00;
+}
+.lj .vote-result{
+    color: #ff4e4e;
+}
+.dl .vote-result{
+    color: #89db28;
+}
+.gz .vote-result{
+    color: #ffd800;
+}
+.gl .vote-result{
+    color: #13cfdf;
+}
+.qd .vote-result{
+    color: #67c0ff;
+}
+.sh .vote-result{
+    color: #eb9fe8;
+}
+.xm .vote-result{
+    color: #f55cab;
+}
+.hz .vote-result{
+    color: #ff8400;
 }
 .btn{
     width: 3.2rem;
