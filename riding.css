@@ -13,8 +13,10 @@
 
 .page {
     width: 100%;
-    height: 100%;
     position: absolute;
+}
+.page1, .page2{
+    height: 100%;
 }
 
 .page1 {
@@ -138,6 +140,7 @@
 }
 .popup{
     position: absolute;
+    display: none;
 }
 .zjk-pop{
     left: -2.07rem;
@@ -147,46 +150,199 @@
 .zy{
     left: 9.216rem;
 }
+.zy-pop{
+    width: 11.435rem;
+    left: -5.824rem;
+}
 .ts{
     left: 1.968rem;
     top: 4.8rem;
+}
+.ts-pop{
+    width: 9.685rem;
+    left: -1.557rem;
 }
 .yc{
     left: 6.8rem;
     top: 5rem;
 }
+.yc-pop{
+    width: 9.77rem;
+    left: -4.245rem;
+}
 .kkth{
     left: 11.6rem;
     top: 4.85rem;
+}
+.kkth-pop{
+    width: 11.179rem;
+    left: -7.509rem;
 }
 .wlmq{
     left: 3.5rem;
     top: 10rem;
 }
+.wlmq-pop{
+    width: 7.168rem;
+    left: -1.813rem;
+}
 .kksl{
     left: 9.6rem;
     top: 10rem;
+}
+.kksl-pop{
+    width: 10.24rem;
+    left: -5.227rem;
 }
 .kns{
     left: 1.6rem;
     top: 13.8rem;
 }
+.kns-pop{
+    width: 10.581rem;
+    left: -1.945rem;
+}
 .klmy{
     left: 6rem;
     top: 14rem;
+}
+.klmy-pop{
+    width: 11.584rem;
+    left: -3.84rem;
 }
 .sw{
     left: 12.6rem;
     top: 14.2rem;
 }
+.sw-pop{
+    width: 10.09rem;
+    left: -7.061rem;
+}
 .tklmg{
     left: 3.2rem;
     top: 19.5rem;
+}
+.tklmg-pop{
+    width: 10.88rem;
+    left: -1.771rem;
 }
 .xzx{
     left: 9rem;
     top: 19.6rem;
 }
+.xzx-pop{
+    width: 9.173rem;
+    left: -3.84rem;
+}
 .page3 .pop {
     width: 16rem;
 }
+
+.other-city{
+    position: absolute;
+    top: 53.419rem;
+    width: 100%;
+}
+.js-vote-city{
+    position: absolute;
+}
+.votes{
+    position: absolute;
+    display: block;
+    font-size: 0.597rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    bottom: 20%;
+}
+.other-city .km{
+    width: 3.499rem;
+    height: 3.499rem;
+    background: url('./img/km.png') no-repeat;
+    background-size: 100% 100%;
+    left: 2.069rem;
+}
+.other-city  .lj{
+    width: 4.032rem;
+    height: 4.032rem;
+    background: url('./img/lj.png') no-repeat;
+    background-size: 100% 100%;
+    top: 2.027rem;
+    left: 5.547rem;
+}
+.other-city  .dl{
+    width: 3.477rem;
+    height: 3.477rem;
+    background: url('./img/dl.png') no-repeat;
+    background-size: 100% 100%;
+    top: 0.597rem;
+    left: 10.005rem;
+}
+.other-city  .gz{
+    width: 3.093rem;
+    height: 3.093rem;
+    background: url('./img/gz.png') no-repeat;
+    background-size: 100% 100%;
+    top: 4.203rem;
+    left: 1.643rem;
+}
+.other-city  .gl{
+    width: 3.499rem;
+    height: 3.499rem;
+    background: url('./img/gl.png') no-repeat;
+    background-size: 100% 100%;
+    top: 6.955rem;
+    left: 4.693rem;
+}
+.other-city  .qd{
+    width: 2.816rem;
+    height: 2.816rem;
+    background: url('./img/qd.png') no-repeat;
+    background-size: 100% 100%;
+    top: 6.187rem;
+    left: 8.747rem;
+}
+.other-city  .sh{
+    width: 3.712rem;
+    height: 3.712rem;
+    background: url('./img/sh.png') no-repeat;
+    background-size: 100% 100%;
+    top: 4.245rem;
+    left: 11.669rem;
+}
+.other-city  .xm{
+    width: 2.88rem;
+    height: 2.88rem;
+    background: url('./img/sh.png') no-repeat;
+    background-size: 100% 100%;
+    top: 10.325rem;
+    left: 2.283rem;
+}
+.other-city  .hz{
+    width: 3.797rem;
+    height: 3.797rem;
+    background: url('./img/hz.png') no-repeat;
+    background-size: 100% 100%;
+    top: 9.6rem;
+    left: 9.257rem;
+}
+.btn{
+    width: 3.2rem;
+    height: 1.387rem;
+    outline: none;
+    border: none;
+    position: absolute;
+    left: 50%;
+    bottom: 1.898rem;
+    margin-left: -1.6rem;
+}
+.follow-btn{
+    background: url('./img/follow.png') no-repeat;
+    background-size: 100% 100%;
+}
+.not-follow{
+    background: url('./img/focusOff.png') no-repeat;
+    background-size: 100% 100%;
+}
+

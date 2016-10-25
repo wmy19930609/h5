@@ -26,22 +26,24 @@
 </head>
 <body>
     <div id="wrapper">
-        <!--<div class="page page1"><div class="kids"></div></div>-->
-        <!--<div class="page page2">
+        <div class="page page1"><div class="kids"></div></div>
+        <div class="page page2">
             <img class="intro-img" src="http://p0.qhimg.com/t0127620ecbb018d5c9.png">
             <div class="kids"></div>
             <span class="backward"></span>
-            <img src="http://p2.qhimg.com/t01b5db5a0733c7c13b.png">
-        </div>-->
+        </div>
         <div class="page page3">
-            <img class="bg-img" src="http://p9.qhimg.com/t011edde7418d364e79.png">
+            <img class="bg-img" src="./img/bg3.png">
             <div class="city-popup"></div>
+            <div class="other-city"></div>
+            <button class="btn follow-btn js-follow"></button>
         </div>
     </div>
 
     <script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
 
     <script>
+        
         function flipOver(){
             var $page2 = $('#wrapper .page2');
             var startX, startY, changeX, changeY;
@@ -60,42 +62,68 @@
                 }
             });
         }
-        
-        function ajax(req){
-            $.ajax({
-                url: req.url,
-                data: req.data,
-                dataType: 'jsonp',
-                callback: req.cbk,
-                method: 'POST',
-                success: req.success,
-                fail: req.fail
-            })
-        }
-        
+
         function drawCity(){
             var cityList = ['zjk', 'zy', 'ts', 'yc', 'kkth', 'wlmq', 'kksl', 'kns', 'klmy', 'sw', 'tklmg', 'xzx'];
             var dom = '';
             cityList.forEach(function(city){
                 dom += '<div class="'+ city +' city">' +
-                        '<img class="city-icon" src="./img/'+ city +'.png" />' +
+                            '<img class="city-icon" src="./img/'+ city +'.png" />' +
                             '<img class="'+ city +'-pop popup" src="./img/'+ city +'-pop.png" />' +
                         '</div>';
             });
             $('.city-popup').append(dom)
         }
-        drawCity()
+
+        function voteCity(){
+            var cityList = ['km', 'lj', 'dl', 'gz', 'gl', 'qd', 'sh', 'xm', 'hz'];
+            var initVotes = {};
+            var dom = '';
+            var cityVote = [];
+            var isPoll = [];
+            $.ajax({
+                url: ' http://votet.btime.com/v2/poll/results',
+                data: { 'subjId':  2345, 'depMd5': '889675bcbdc82c50260173446d19d4bd'},
+                dataType: 'jsonp',
+                method: 'POST',
+                callback: 'vote',
+                success: function(res){
+                    var option = res.data.ret && res.data.ret[0]&& res.data.ret[0].option;
+                    if(option){
+                        option.forEach(function(vote){
+                            cityVote.push(vote.total);
+                            isPoll.push(vote.isPoll)
+                        });
+                    }
+
+                    cityList.forEach(function(city, index){
+                        dom += '<div class="'+ city +' js-vote-city" data-ispoll="'+ isPoll[index] +'">' +
+                                    '<span class="votes">'+ cityVote[index] +'</span>' +
+                                '</div>';
+                    });
+                    $('.other-city').append(dom)
+                },
+                fail: function(err){
+                    console.log(err)
+                }
+            });
+        }
+        
         function init(){
             flipOver();
+            drawCity();
+            voteCity();
+
             $('.js-follow').on('click', function(){
                 var $this = $(this)
-                ajax({
+                $.ajax({
                     url: 'http://record.btime.com/sub',
                     data: { 'c_id':  307831},
+                    dataType: 'jsonp',
                     callback: 'follow',
                     success: function(res){
                         if(res.errno == 0 && res.data.length){
-                            $this.addClass('not')
+                            $this.removeClass('follow-btn').addClass('not-follow')
                         }
                     },
                     fail: function(err){
@@ -104,22 +132,25 @@
                 });
             });
 
-            $('.js-vote').on('click', function(){
-                var $this = $(this)
-                ajax({
-                    url: ' http://voteapi.btime.com/v2/poll/results',
-                    data: { 'subjId':  2345, 'id': 6067, 'depMd5': '889675bcbdc82c50260173446d19d4bd'},
-                    method: 'POST',
-                    callback: 'vote',
-                    success: function(res){
-                        alert(1)
-                        console.log(res)
-                    },
-                    fail: function(err){
-                        console.log(err)
-                    }
+            $('.js-vote-city').on('click', function(){
+                var $this = $(this);
+                var cityName = /\w+\b/.exec($(this).attr('class'))[0];
+                var voteCityIds = {
+                    'dl': 6067, 'gl': 6068, 'gz': 6069, 
+                    'hz': 6070, 'km': 6071, 'lj': 6072, 
+                    'qd': 6073, 'sh': 6074, 'xm': 6075 
+                };
+                $.ajax({
+                    url: ''
                 });
+                
             });
+
+            $('.city-popup').on('click', '.city-icon', function(){
+                var targetCity = /\w+\b/.exec($(this).parents('.city').attr('class'))[0]
+                $('.popup').hide()
+                $(this).next('.popup').show()                
+            })
         }
 
         init()
