@@ -1,63 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Riding</title>
-    <meta charset="utf-8">
+	<meta charset="UTF-8">
+	<title>Riding</title>
+	<meta charset="utf-8">
 
-    <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
-    <meta content=always name=referrer>
+	<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+	<meta content=always name=referrer>
 
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 
-    <meta name="format-detection" content="telephone=no">
-    <meta name="format-detection" content="date=no">
-    <meta name="format-detection" content="address=no">
-    <meta name="format-detection" content="email=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="date=no">
+	<meta name="format-detection" content="address=no">
+	<meta name="format-detection" content="email=no">
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="telephone=no" name="format-detection">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta content="telephone=no" name="format-detection">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
 
-    <link rel="shortcut icon" href="http://s3.qhimg.com/static/c56696ff943031e3.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="http://s3.qhimg.com/static/c56696ff943031e3.ico" type="image/x-icon" />
 
-    <script src="./rem.js"></script>
-    <link rel="stylesheet" href="./riding.css">
+	<script src="./rem.js"></script>
+	<link rel="stylesheet" href="./riding.css">
 </head>
+
 <body>
-    <div id="wrapper">
-        <div class="page page1"><div class="kids"></div></div>
-        <div class="page page2">
-            <img class="intro-img" src="http://p0.qhimg.com/t0127620ecbb018d5c9.png">
-            <div class="kids"></div>
-            <span class="backward"></span>
-        </div>
-        <div class="page page3">
-            <img class="bg-img" src="./img/bg3.png">
-            <div class="city-popup"></div>
-            <div class="other-city"><span class="vote-result">+1</span></div>
-            <button class="btn follow-btn js-follow"></button>
-        </div>
-    </div>
+	<div id="wrapper">
+		<div class="page page1">
+			<div class="kids"></div>
+		</div>
+		<div class="outer">
+			<div class="page page2">
+				<div class="kids"></div>
+			</div>
+			<div class="page page3">
+				<img class="bg-img" src="./img/bg3.png">
+				<div class="city-popup"></div>
+				<div class="other-city"></div>
+				<button class="btn follow-btn js-follow"></button>
+			</div>
+		</div>
+	</div>
+	<script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
 
-    <script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
-
-    <script>
+	<script>
         function flipOver(){
             var $page2 = $('#wrapper .page2');
             var startX, startY, changeX, changeY;
-            var y = $('#wrapper').height();
+            var y = $(window).height();
             $page2.on('touchstart', function(e){
                 startY = e.targetTouches[0].pageY;
             });
 
             $page2.on('touchend', function(e){
                 changeY = e.changedTouches[0].pageY;
-                if(changeY - startY < 0){
-                    $page2.css({
+                if(changeY - startY <= 0){
+                    $('.page3').css({
+                        '-webkit-transform' : 'translate3d(0px, 0px, 0px);',
+                        'transform' : 'translate3d(0px, 0px, 0px);'
+                    }).addClass('anim');
+
+                    $('.page2').css({
                         '-webkit-transform' : 'translate3d(0px, -' + y + 'px, 0px);',
                         'transform' : 'translate3d(0px, -' + y + 'px, 0px);'
                     }).addClass('anim');
+
+                    $('.page2 .kids').remove();
+                    $('body').css('overflow','auto');
                 }
             });
         }
@@ -80,6 +91,7 @@
             var dom = '';
             var cityVote = [];
             var isPoll = [];
+            
             $.ajax({
                 url: 'http://votet.btime.com/v2/poll/results',
                 data: { 'subjId':  2345, 'depMd5': '889675bcbdc82c50260173446d19d4bd'},
@@ -93,11 +105,11 @@
                             cityVote.push(vote.total);
                             isPoll.push(vote.isPoll)
                         });
+                        
                     }
-
                     cityList.forEach(function(city, index){
-                        dom += '<div class="'+ city +' js-vote-city" data-ispoll="'+ isPoll[index] +'">' +
-                                    '<span class="votes">'+ cityVote[index] +'</span>' +
+                        dom += '<div class="'+ city +' js-vote-city" data-ispoll="'+ (isPoll[index]) +'">' +
+                                    '<span class="votes">'+ (cityVote[index] || 0) +'</span>' +
                                 '</div>';
                     });
                     $('.other-city').append(dom)
@@ -105,13 +117,35 @@
                 fail: function(err){
                     console.log(err)
                 }
-            });
+             });
+            
         }
         
+        function isLogin(){
+            var loginFlag = false;
+
+            $.ajax({
+                url: 'http://record.btime.com/getUserChannel',
+                data: { 'uid': 307831 },
+                dataType: 'jsonp',
+                success: function(res){},
+                fail: function(err){}
+            });
+            return loginFlag;
+        }
+
         function init(){
+            $('body').scrollTop(0)
             flipOver();
             drawCity();
             voteCity();
+
+            $(".page2").height($(window).height());
+            var y = $(window).height();
+            $('.page3').css({
+                '-webkit-transform' : 'translate3d(0px, ' + y + 'px, 0px);',
+                'transform' : 'translate3d(0px, ' + y + 'px, 0px);'
+            });
 
             $('.js-follow').on('click', function(){
                 var $this = $(this)
@@ -146,25 +180,34 @@
                     method: 'POST',
                     callback: 'vote',
                     success: function(res){
+                        var startVote = +$('.' + cityName).find('.votes').text();
+                        
                         if(res.errno == 1){
-
+                            $('<span class="vote-result"></span>').addClass(cityName + '-vote').text('+1').appendTo('.other-city .' + cityName)
+                            $('.' + cityName).find('.votes').text(startVote + 1)
+                        }else{
+                            $('<span class="vote-result"></span>').addClass(cityName + '-vote').text('已投').appendTo('.other-city .' + cityName)
                         }
                     },
                     fail: function(err){
-                        console.log(888,err)
+                        console.log(err)
                     }
                 });
                 
             });
-
-            $('.city-popup').on('click', '.city-icon', function(){
-                var targetCity = /\w+\b/.exec($(this).parents('.city').attr('class'))[0]
-                $('.popup').hide()
-                $(this).next('.popup').show()                
+            $('#wrapper').on('click', function(e){
+                var $target = $(e.target).closest('.city-icon')
+                if(!$target){
+                    $('.popup').hide()
+                }else{
+                        $('.popup').hide()
+                        $target.next('.popup').show()
+                    }
             })
         }
 
         init()
     </script>
 </body>
+
 </html>

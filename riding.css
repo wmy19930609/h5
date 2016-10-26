@@ -3,8 +3,12 @@
     margin: 0;
 }
 
+body{
+    overflow: hidden;
+}
+
 #wrapper {
-    position: absolute;
+    /*position: absolute;*/
     top: 0;
     left: 0;
     right: 0;
@@ -13,7 +17,13 @@
 
 .page {
     width: 100%;
+    /*position: absolute;*/
+}
+
+.page2{
     position: absolute;
+    top: 0;
+    left: 0;
 }
 .page1, .page2{
     height: 100%;
@@ -21,9 +31,11 @@
 
 .page1 {
     opacity: 0;
-    background: url("http://p5.qhimg.com/t01e01124008d17b7d6.png") no-repeat;
+    background: url("./img/bg1.png") no-repeat;
     background-size: 100% 100%;
-    -webkit-animation: fadeOut ease 3s;
+    -webkit-animation: fadeOut ease 2s;
+    overflow: hidden;
+    position: absolute;
 }
 
 @keyframes fadeIn {
@@ -35,7 +47,7 @@
     }
 }
 
-.page2 {
+.outer {
     -webkit-animation: fadeIn 2s ease 2s both;
 }
 
@@ -51,12 +63,16 @@
     left: 50%;
     bottom: 2rem;
     margin-left: -4rem;
-    -webkit-animation: runningGirl ease 2s;
+    -webkit-animation: runningGirl ease 3s;
 }
 
+.page2{
+    background: url(./img/bg2.png) no-repeat;
+    background-size: 100% 100%;
+}
 .page2 .kids {
     position: absolute;
-    bottom: 6.08rem;
+    bottom: 6.037rem;
     left: 30%;
     animation: shakingGirl .2s ease-in .2s infinite alternate;
 }
@@ -68,14 +84,14 @@
     background: url(http://p9.qhimg.com/t01b237f40946c339df.png) no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    bottom: 1rem;
+    bottom: 1.259rem;
     left: 50%;
     margin-left: -.5rem;
 }
 
 .anim {
-    -webkit-transition: all 500ms ease-out 0s;
-    transition: all 500ms ease-out 0s;
+    -webkit-transition: all 800ms ease-out 0s;
+    transition: all 800ms ease-out 0s;
 }
 
 @keyframes fadeOut {
@@ -120,6 +136,8 @@
 
 .page3 {
     width: 100%;
+    /*top: 100%;*/
+    position: relative;
 }
 
 .page3 .city-popup {
@@ -153,6 +171,7 @@
 .zy-pop{
     width: 11.435rem;
     left: -5.824rem;
+    top: -6.5rem;
 }
 .ts{
     left: 1.968rem;
@@ -161,6 +180,7 @@
 .ts-pop{
     width: 9.685rem;
     left: -1.557rem;
+    top: -6.623rem;
 }
 .yc{
     left: 6.8rem;
@@ -168,7 +188,8 @@
 }
 .yc-pop{
     width: 9.77rem;
-    left: -4.245rem;
+    left: -4.7rem;
+    top: -7.2rem;
 }
 .kkth{
     left: 11.6rem;
@@ -177,6 +198,7 @@
 .kkth-pop{
     width: 11.179rem;
     left: -7.509rem;
+    top: -7.5rem;
 }
 .wlmq{
     left: 3.5rem;
@@ -184,7 +206,8 @@
 }
 .wlmq-pop{
     width: 7.168rem;
-    left: -1.813rem;
+    left: -1.58rem;
+    top: -8rem;
 }
 .kksl{
     left: 9.6rem;
@@ -193,6 +216,7 @@
 .kksl-pop{
     width: 10.24rem;
     left: -5.227rem;
+    top: -8.5rem;
 }
 .kns{
     left: 1.6rem;
@@ -200,7 +224,8 @@
 }
 .kns-pop{
     width: 10.581rem;
-    left: -1.945rem;
+    left: -0.945rem;
+    top: -8rem;
 }
 .klmy{
     left: 6rem;
@@ -208,7 +233,8 @@
 }
 .klmy-pop{
     width: 11.584rem;
-    left: -3.84rem;
+    left: -3.5rem;
+    top: -8.339rem;
 }
 .sw{
     left: 12.6rem;
@@ -216,7 +242,8 @@
 }
 .sw-pop{
     width: 10.09rem;
-    left: -7.061rem;
+    left: -7.161rem;
+    top: -7.5rem;
 }
 .tklmg{
     left: 3.2rem;
@@ -225,6 +252,7 @@
 .tklmg-pop{
     width: 10.88rem;
     left: -1.771rem;
+    top: -8.083rem;
 }
 .xzx{
     left: 9rem;
@@ -233,6 +261,7 @@
 .xzx-pop{
     width: 9.173rem;
     left: -3.84rem;
+    top: -11rem;
 }
 .page3 .pop {
     width: 16rem;
@@ -346,35 +375,35 @@
     font-weight: bold;
     font-size: 0.704rem;
     position: absolute;
-    left: 48%;
-    animation: vote 1s linear  both;
+    left: 80%;
+    animation: vote 2s linear  both;
 }
 
-.km .vote-result{
+.km-vote{
     color: #ff4e00;
 }
-.lj .vote-result{
+.lj-vote{
     color: #ff4e4e;
 }
-.dl .vote-result{
+.dl-vote{
     color: #89db28;
 }
-.gz .vote-result{
+.gz-vote{
     color: #ffd800;
 }
-.gl .vote-result{
+.gl-vote{
     color: #13cfdf;
 }
-.qd .vote-result{
+.qd-vote{
     color: #67c0ff;
 }
-.sh .vote-result{
+.sh-vote{
     color: #eb9fe8;
 }
-.xm .vote-result{
+.xm-vote{
     color: #f55cab;
 }
-.hz .vote-result{
+.hz-vote{
     color: #ff8400;
 }
 .btn{
