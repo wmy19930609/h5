@@ -43,8 +43,9 @@
 			</div>
 		</div>
 	</div>
+    
 	<script src="http://s6.qhimg.com/static/88422eda07b71a23/m/libs/zepto.js"></script>
-
+    <script src="./blogin.js"></script>
 	<script>
         function flipOver(){
             var $page2 = $('#wrapper .page2');
@@ -121,19 +122,6 @@
             
         }
         
-        function isLogin(){
-            var loginFlag = false;
-
-            $.ajax({
-                url: 'http://record.btime.com/getUserChannel',
-                data: { 'uid': 307831 },
-                dataType: 'jsonp',
-                success: function(res){},
-                fail: function(err){}
-            });
-            return loginFlag;
-        }
-
         function init(){
             $('body').scrollTop(0)
             flipOver();
@@ -149,45 +137,57 @@
 
             $('.js-follow').on('click', function(){
                 var $this = $(this)
-                $.ajax({
-                    url: 'http://record.btime.com/sub',
-                    data: { 'c_id':  307831},
-                    dataType: 'jsonp',
-                    callback: 'follow',
-                    success: function(res){
-                        if(res.errno == 0 && res.data.length){
-                            $this.removeClass('follow-btn').addClass('not-follow')
+                mLogin.login(function(data){
+                    $.ajax({
+                        url: 'http://record.btime.com/sub',
+                        data: { 'c_id':  307831},
+                        dataType: 'jsonp',
+                        callback: 'follow',
+                        success: function(res){
+                            console.log(res)
+                            if(res.errno == 0 && res.data.length){
+                                alert('关注成功')
+                            }else if(res.errno == 0 && res.data.length == 0){
+                                alert('你已经关注过了哦')
+                            }
+                        },
+                        fail: function(err){
+                            console.log(err)
                         }
-                    },
-                    fail: function(err){
-                        console.log(err)
-                    }
+                    });
                 });
             });
 
-            $('.other-city').on('click', '.js-vote-city', function(){
+            $('.other-city').on('click', '.js-vote-city', function(event){
+                event.stopPropagation();
                 var $this = $(this);
                 var cityName = /\w+\b/.exec($(this).attr('class'))[0];
                 var voteCityIds = {
-                    'dl': 6067, 'gl': 6068, 'gz': 6069, 
-                    'hz': 6070, 'km': 6071, 'lj': 6072, 
-                    'qd': 6073, 'sh': 6074, 'xm': 6075 
+                    'dl': 6169, 'gl': 6170, 'gz': 6171, 
+                    'hz': 6172, 'km': 6173, 'lj': 6174, 
+                    'qd': 6175, 'sh': 6176, 'xm': 6177 
                 };
                 $.ajax({
-                    url: 'http://votet.btime.com/v1/poll/voting',
-                    data: { 'subjId': 2345,  'itemId': 1149, 'id': voteCityIds[cityName],'depMd5': '889675bcbdc82c50260173446d19d4bd'},
+                    url: 'http://voteapi.btime.com/v1/poll/voting',
+                    data: { 'subjId': 2352,  'itemId': 1172, 'id': voteCityIds[cityName],'depMd5': '889675bcbdc82c50260173446d19d4bd'},
                     dataType: 'jsonp',
                     method: 'POST',
                     callback: 'vote',
                     success: function(res){
-                        var startVote = +$('.' + cityName).find('.votes').text();
-                        
+                        var $targetCity = $('.' + cityName);
+                        var startVote = +$targetCity.find('.votes').text();
+                        $targetCity.find('.vote-result').remove();
                         if(res.errno == 1){
+
                             $('<span class="vote-result"></span>').addClass(cityName + '-vote').text('+1').appendTo('.other-city .' + cityName)
                             $('.' + cityName).find('.votes').text(startVote + 1)
                         }else{
                             $('<span class="vote-result"></span>').addClass(cityName + '-vote').text('已投').appendTo('.other-city .' + cityName)
                         }
+
+                        setTimeout(function(){
+                            $targetCity.find('.vote-result').hide()
+                        }, 2000);
                     },
                     fail: function(err){
                         console.log(err)
@@ -205,7 +205,6 @@
                     }
             })
         }
-
         init()
     </script>
 </body>

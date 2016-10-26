@@ -1,10 +1,14 @@
 * {
     padding: 0;
     margin: 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: none;
 }
 
 body{
     overflow: hidden;
+    -webkit-user-select: none; /*webkit浏览器*/ 
+    user-select: none; 
 }
 
 #wrapper {
@@ -14,30 +18,6 @@ body{
     right: 0;
     bottom: 0;
 }
-
-.page {
-    width: 100%;
-    /*position: absolute;*/
-}
-
-.page2{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.page1, .page2{
-    height: 100%;
-}
-
-.page1 {
-    opacity: 0;
-    background: url("./img/bg1.png") no-repeat;
-    background-size: 100% 100%;
-    -webkit-animation: fadeOut ease 2s;
-    overflow: hidden;
-    position: absolute;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -46,55 +26,26 @@ body{
         opacity: 1;
     }
 }
-
-.outer {
-    -webkit-animation: fadeIn 2s ease 2s both;
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
-
-.kids {
-    width: 5.952rem;
-    height: 4.16rem;
-    background: url("http://p4.qhimg.com/t01b9e1e072c0394df7.png") no-repeat;
-    background-size: 100% 100%;
-}
-
-.page1 .kids {
-    position: fixed;
-    left: 50%;
-    bottom: 2rem;
-    margin-left: -4rem;
-    -webkit-animation: runningGirl ease 3s;
-}
-
-.page2{
-    background: url(./img/bg2.png) no-repeat;
-    background-size: 100% 100%;
-}
-.page2 .kids {
-    position: absolute;
-    bottom: 6.037rem;
-    left: 30%;
-    animation: shakingGirl .2s ease-in .2s infinite alternate;
-}
-
-.page2 .backward {
-    display: block;
-    width: 1rem;
-    height: 2rem;
-    background: url(http://p9.qhimg.com/t01b237f40946c339df.png) no-repeat;
-    background-size: 100% 100%;
-    position: absolute;
-    bottom: 1.259rem;
-    left: 50%;
-    margin-left: -.5rem;
-}
-
-.anim {
-    -webkit-transition: all 800ms ease-out 0s;
-    transition: all 800ms ease-out 0s;
-}
-
 @keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-webkit-keyframes fadeOut {
     0% {
         opacity: 1;
     }
@@ -115,14 +66,129 @@ body{
     }
 }
 
-@keyframes shakingGirl {
+@-webkit-keyframes runningGirl {
     from {
-        bottom: 6.08rem;
+        left: 0;
     }
     to {
-        bottom: 5.78rem;
+        left: 50%;
     }
 }
+
+@keyframes shakingGirl {
+    from {
+        bottom: 5.08rem;
+    }
+    to {
+        bottom: 4.9rem;
+    }
+}
+
+@-webkit-keyframes shakingGirl {
+    from {
+        bottom: 5.08rem;
+    }
+    to {
+        bottom: 4.9rem;
+    }
+}
+@keyframes vote {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+    to {
+        top: -.5rem;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes vote {
+    from {
+        top: 0;
+        opacity: 1;
+    }
+    to {
+        top: -.5rem;
+        opacity: 0;
+    }
+}
+.page {
+    width: 100%;
+    /*position: absolute;*/
+}
+
+.page2{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.page1, .page2{
+    height: 100%;
+}
+
+.page1 {
+    opacity: 0;
+    background: url("./img/bg1.png") no-repeat;
+    background-size: 100% 100%;
+    -webkit-animation: fadeOut ease 2s;
+    animation: fadeOut ease 2s;
+    overflow: hidden;
+    position: absolute;
+}
+
+
+
+.outer {
+    -webkit-animation: fadeIn 2s ease 2s both;
+    animation: fadeIn 2s ease 2s both;
+    overflow: hidden;
+}
+
+.kids {
+    width: 5.952rem;
+    height: 4.16rem;
+    background: url("http://p4.qhimg.com/t01b9e1e072c0394df7.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.page1 .kids {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    margin-left: -4rem;
+    -webkit-animation: runningGirl ease 3s;
+    animation: runningGirl ease 3s;
+}
+
+.page2{
+    background: url(./img/bg2.png) no-repeat;
+    background-size: 100% 100%;
+}
+.page2 .kids {
+    position: absolute;
+    bottom: 5.037rem;
+    left: 30%;
+    -webkit-animation: shakingGirl .1s ease-in .2s infinite alternate;
+    animation: shakingGirl .1s ease-in .2s infinite alternate;
+}
+
+.page2 .backward {
+    display: block;
+    width: 1rem;
+    height: 2rem;
+    background: url(http://p9.qhimg.com/t01b237f40946c339df.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 1.259rem;
+    left: 50%;
+    margin-left: -.5rem;
+}
+
+.anim {
+    -webkit-transition: all 800ms ease-out 0s;
+    transition: all 800ms ease-out 0s;
+}
+
 
 .page3 .bg-img,
 .page2 img {
@@ -271,6 +337,8 @@ body{
     position: absolute;
     top: 53.419rem;
     width: 100%;
+    height: 13.483rem;
+    border: 0;
 }
 .other-city .tips{
     position: absolute;
@@ -279,6 +347,7 @@ body{
 }
 .js-vote-city{
     position: absolute;
+    border: 0;
 }
 .votes{
     position: absolute;
@@ -361,22 +430,17 @@ body{
     top: 9.6rem;
     left: 9.257rem;
 }
-@keyframes vote {
-    from {
-        top: 0;
-        opacity: 1;
-    }
-    to {
-        top: -.5rem;
-        opacity: 0;
-    }
-}
+
 .vote-result{
+    display: block;
+    width: 1.451rem;
     font-weight: bold;
     font-size: 0.704rem;
     position: absolute;
     left: 80%;
+    -webkit-animation: vote 2s linear  both;
     animation: vote 2s linear  both;
+    z-index: 10;
 }
 
 .km-vote{
