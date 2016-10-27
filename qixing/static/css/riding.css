@@ -138,7 +138,7 @@ body {
 
 .page1 {
     opacity: 0;
-    background: url("./static/img/bg1bk.png") no-repeat;
+    background: url("../../static/img/bg1bk.png") no-repeat;
     background-size: 100% 100%;
     -webkit-animation: fadeOut ease 2s;
     animation: fadeOut ease 2s;
@@ -169,7 +169,7 @@ body {
 }
 
 .page2 {
-    background: url(./static/img/bg2bk.png) no-repeat;
+    background: url(../../static/img/bg2bk.png) no-repeat;
     background-size: 100% 100%;
 }
 
@@ -212,10 +212,13 @@ body {
     width: 100%;
     /*top: 100%;*/
     position: relative;
+    background: url('../../static/img/bg3bk.png') no-repeat;
+    background-size: 100%;
 }
 
 .page3 .city-popup {
     width: 100%;
+    height: 24.043rem;
     position: absolute;
     top: 25.885rem;
 }
@@ -400,7 +403,7 @@ body {
 .other-city .km {
     width: 3.499rem;
     height: 3.499rem;
-    background: url('./static/img/km.png') no-repeat;
+    background: url('../../static/img/km.png') no-repeat;
     background-size: 100% 100%;
     left: 2.069rem;
 }
@@ -408,7 +411,7 @@ body {
 .other-city .lj {
     width: 4.032rem;
     height: 4.032rem;
-    background: url('./static/img/lj.png') no-repeat;
+    background: url('../../static/img/lj.png') no-repeat;
     background-size: 100% 100%;
     top: 2.027rem;
     left: 5.547rem;
@@ -417,7 +420,7 @@ body {
 .other-city .dl {
     width: 3.477rem;
     height: 3.477rem;
-    background: url('./static/img/dl.png') no-repeat;
+    background: url('../../static/img/dl.png') no-repeat;
     background-size: 100% 100%;
     top: 0.597rem;
     left: 10.005rem;
@@ -426,7 +429,7 @@ body {
 .other-city .gz {
     width: 3.093rem;
     height: 3.093rem;
-    background: url('./static/img/gz.png') no-repeat;
+    background: url('../../static/img/gz.png') no-repeat;
     background-size: 100% 100%;
     top: 4.203rem;
     left: 1.643rem;
@@ -435,7 +438,7 @@ body {
 .other-city .gl {
     width: 3.499rem;
     height: 3.499rem;
-    background: url('./static/img/gl.png') no-repeat;
+    background: url('../../static/img/gl.png') no-repeat;
     background-size: 100% 100%;
     top: 6.955rem;
     left: 4.693rem;
@@ -444,7 +447,7 @@ body {
 .other-city .qd {
     width: 2.816rem;
     height: 2.816rem;
-    background: url('./static/img/qd.png') no-repeat;
+    background: url('../../static/img/qd.png') no-repeat;
     background-size: 100% 100%;
     top: 6.187rem;
     left: 8.747rem;
@@ -453,7 +456,7 @@ body {
 .other-city .sh {
     width: 3.712rem;
     height: 3.712rem;
-    background: url('./static/img/sh.png') no-repeat;
+    background: url('../../static/img/sh.png') no-repeat;
     background-size: 100% 100%;
     top: 4.245rem;
     left: 11.669rem;
@@ -462,7 +465,7 @@ body {
 .other-city .xm {
     width: 2.88rem;
     height: 2.88rem;
-    background: url('./static/img/xm.png') no-repeat;
+    background: url('../../static/img/xm.png') no-repeat;
     background-size: 100% 100%;
     top: 10.325rem;
     left: 2.283rem;
@@ -471,7 +474,7 @@ body {
 .other-city .hz {
     width: 3.797rem;
     height: 3.797rem;
-    background: url('./static/img/hz.png') no-repeat;
+    background: url('../../static/img/hz.png') no-repeat;
     background-size: 100% 100%;
     top: 9.6rem;
     left: 9.257rem;
@@ -537,11 +540,11 @@ body {
 }
 
 .follow-btn {
-    background: url('./static/img/follow.png') no-repeat;
+    background: url('../../static/img/follow.png') no-repeat;
     background-size: 100% 100%;
 }
 
 .not-follow {
-    background: url('./static/img/focusOff.png') no-repeat;
+    background: url('../../static/img/focusOff.png') no-repeat;
     background-size: 100% 100%;
 }
