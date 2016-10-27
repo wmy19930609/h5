@@ -210,24 +210,44 @@ body {
 
 .page3 {
     width: 100%;
-    /*top: 100%;*/
+    padding-top: 24.405rem;
     position: relative;
-    background: url('../../static/img/bg3bk.png') no-repeat;
+    background: url('../../static/img/bg33.png') no-repeat;
     background-size: 100%;
 }
 
 .page3 .city-popup {
     width: 100%;
-    height: 24.043rem;
-    position: absolute;
-    top: 25.885rem;
+    height: 21.043rem;
+    padding-top: 2.027rem;
+    position: relative;
+    /*position: absolute;*/
+    /*top: 25.885rem;*/
 }
-
+.page3 .ops-panel{
+    background: url('../../static/img/opsPanelBg.png') no-repeat;
+    background-size: 100% 100%;
+    padding-top: 5.013rem;
+}
 .page3 .city-icon {
     /*position: absolute;*/
+    font-size: 0.512rem;
     height: 2rem;
+    text-align: center;
+    font-weight: bold;
+    color: #434868;
 }
-
+.city-icon .location{
+    display: inline-block;
+    width: 0.491rem;
+    height: 0.725rem;
+    background: url('../../static/img/locationIcon.png') no-repeat;
+    background-size: 100%;
+}
+.city-icon .active{
+    background: url('../../static/img/choosen.png') no-repeat;
+    background-size: 100%;
+}
 .page3 .city {
     position: absolute;
 }
@@ -372,13 +392,19 @@ body {
 }
 
 .other-city {
-    position: absolute;
-    top: 53.419rem;
+    position: relative;
     width: 100%;
     height: 13.483rem;
     border: 0;
 }
-
+.follow-panel{
+    position: relative;
+    width: 14.72rem;
+    height: 10.027rem;
+    background: url('../../static/img/followPanel.png') no-repeat;
+    background-size: 100% 100%;
+    margin: 2.155rem auto 0;
+}
 .other-city .tips {
     position: absolute;
     left: 46%;
@@ -535,7 +561,7 @@ body {
     border: none;
     position: absolute;
     left: 50%;
-    bottom: 1.898rem;
+    bottom: 0.6rem;
     margin-left: -1.6rem;
 }
 
@@ -544,7 +570,3 @@ body {
     background-size: 100% 100%;
 }
 
-.not-follow {
-    background: url('../../static/img/focusOff.png') no-repeat;
-    background-size: 100% 100%;
-}

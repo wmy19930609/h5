@@ -32,10 +32,15 @@
                 <div class="kids"></div>
             </div>
             <div class="page page3">
-                <!--<img class="bg-img" src="./static/img/bg3bk.png">-->
                 <div class="city-popup"></div>
-                <div class="other-city"></div>
-                <a href="javascript:;" bk="follow"><button class="btn follow-btn js-follow"></button></a>
+                <div class="ops-panel">
+                    <div class="other-city"></div>
+                    <div class="follow-panel">
+                        <a href="javascript:;" bk="follow">
+                            <button class="btn follow-btn js-follow"></button>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -77,6 +82,20 @@
 
         function drawCity(){
             var cityList = ['zjk', 'zy', 'ts', 'yc', 'kkth', 'wlmq', 'kksl', 'kns', 'klmy', 'sw', 'tklmg', 'xzx'];
+            var cityMap = {
+                'zjk': '张家口',
+                'zy' : '张掖',
+                'ts' : '天山',
+                'yc' : '银川',
+                'kkth': '可可托海',
+                'wlmq': '乌鲁木齐',
+                'kksl': '可可苏里',
+                'kns' : '喀纳斯',
+                'klmy': '卡拉玛依',
+                'sw'  : '沙湾',
+                'tklmg': '塔克拉玛干',
+                'xzx' : '新藏线'
+            }
             var urlList = [
                 'http://item.btime.com/46pmkan4l5j8a09ocinl5adm617',
                 'http://item.btime.com/43ur92mg6a09jc9fmpbll02h26q',
@@ -120,15 +139,21 @@
                 'http://p1.qhimg.com/t0153754afd502ae895.png'
             ];
             var dom = '';
+            
             cityList.forEach(function(city, index){
                 dom += '<div class="'+ city +' city">' +
-                            '<img class="city-icon" src="'+ imgList[index] +'" />' +
+                            '<div class="city-icon">' +
+                                '<span class="location"></span>' + 
+                                '<p>' + cityMap[city] + '</p>' +
+                            '</div>' +
                             '<a href="'+ urlList[index] +'">' +
                                 '<img class="'+ city +'-pop popup" src="'+ popImgList[index] +'" />' +
                             '</a>' +
                         '</div>';
             });
-            $('.city-popup').append(dom)
+            $('.city-popup').append(dom);
+            $('.kksl .city-icon').find('.location').addClass('choosen')
+            $('.kksl').find('.popup').show()
         }
 
         function voteCity(){
@@ -235,8 +260,11 @@
                 });
                 
             });
+
             $('#wrapper').on('click', function(e){
-                var $target = $(e.target).closest('.city-icon')
+                var $target = $(e.target).closest('.city-icon');
+                $('.location').removeClass('active')
+                $target.find('.location').addClass('active');
                 if(!$target){
                     $('.popup').hide()
                 }else{
